@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Suspicious mail? Send in the pigeon. Browser-local email header analysis with delivery traces and explicit OSINT investigation links.">
+<meta name="description" content="A small, browser-local tool for reading email headers, authentication claims and delivery routes.">
 <meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>HomingPigeon · The coo-perations desk</title><link rel="stylesheet" href="style.css"><script type="module" src="app.js"></script>
+<title>HomingPigeon · Email header inspector</title><link rel="stylesheet" href="style.css"><script type="module" src="app.js"></script>
 </head>
-<body><a class="skip" href="#workbench">Skip to header analysis</a><div class="shell">
-<header><a class="brand" href="./"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M9 27c0-8 7-14 15-14 1-6 4-9 9-9 6 0 10 5 10 10l5 4-7 3c-1 12-9 21-20 21C9 42 3 35 3 31l8 1z"/></svg>HomingPigeon<span class="brand-note">MAIL INVESTIGATIONS / EST. 2026</span></a><span class="pill">Browser-local analysis. Zero carrier pigeons.</span></header>
+<body><a class="skip" href="#workbench">Skip to header input</a>
+<div class="shell">
+<header>
+<a class="brand" href="./"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M9 27c0-8 7-14 15-14 1-6 4-9 9-9 6 0 10 5 10 10l5 4-7 3c-1 12-9 21-20 21C9 42 3 35 3 31l8 1z"/></svg>HomingPigeon</a>
+<div class="header-links"><span class="local-label">Runs in your browser</span><a href="https://github.com/mattskrzypek/HomingPigeon" rel="noopener noreferrer">Source code ↗</a></div>
+</header>
 <main>
-<section class="hero"><p class="eyebrow">The coo-perations desk</p><h1>Your inbox smells funny.<br><span>Let a pigeon peck at it.</span></h1><p>Follow the delivery trail, inspect authentication claims, and pick out the breadcrumbs worth investigating. No account. No server uploads. Surprisingly qualified for a bird.</p></section>
-<div class="coop-layout">
-<aside class="loft" aria-labelledby="loft-title">
-<div class="loft-heading"><p class="eyebrow">Your assigned investigator</p><span class="stamp">LICENSED<br>TO COO.</span></div>
+<section class="intro"><p class="eyebrow">A little help with suspicious mail</p><h1>Email header inspector</h1><p>Paste the original headers to see where a message travelled and what the mail servers reported.</p></section>
+<div class="desk-layout">
+<aside class="field-notes" aria-labelledby="notes-title">
 <svg class="pigeon" viewBox="0 0 320 290" role="img" aria-labelledby="pigeon-title"><title id="pigeon-title">A round pigeon carrying an envelope, ready to inspect suspicious mail</title>
 <ellipse cx="160" cy="263" rx="105" ry="13" fill="#0d1510"/>
 <g stroke="#152213" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
@@ -24,19 +27,25 @@
 <path d="M137 58c8-19 26-25 39-20" fill="none"/><path d="M99 165c-6 37 19 62 51 52 17-5 24-29 3-43" fill="#879b90"/>
 <path d="m164 178 86-7 5 65-86 7z" fill="#f3f0df"/><path d="m164 178 46 28 40-35" fill="none"/><path d="m171 242 31-32m53 26-30-26" fill="none" stroke-width="3"/>
 </g><circle cx="218" cy="220" r="9" fill="#c3ee87"/></svg>
-<h2 id="loft-title">Small brain.<br>Big header energy.</h2><p class="loft-bio">Senior breadcrumb analyst.<br>Paid entirely in seeds.</p>
-<ol class="flight-plan"><li><span>01</span> Feed it headers</li><li><span>02</span> Follow the flight path</li><li><span>03</span> Investigate the crumbs</li></ol>
-<p class="loft-footnote">Actual analysis runs in your browser.<br>The pigeon is mostly here for morale.</p>
+<p class="bird-caption">For emails that make you squint.</p>
+<h2 id="notes-title">Getting the headers</h2>
+<dl class="source-guide"><dt>Gmail</dt><dd>Open the message menu, then choose <strong>Show original</strong>.</dd><dt>Thunderbird</dt><dd>Use <strong>View → Message Source</strong>.</dd><dt>Other clients</dt><dd>Look for “message source” or “internet headers”.</dd></dl>
+<p class="margin-note">The pigeon accepts headers.<br>Please keep your sandwiches.</p>
 </aside>
 <section id="workbench" class="workbench" aria-labelledby="input-title">
-<div class="section-heading"><div><p class="eyebrow">01 / Feed the bird</p><h2 id="input-title">Headers in. Breadcrumbs out.</h2></div><button id="load-sample" type="button">Try a practice pigeon</button></div>
-<form id="analyze-form"><label for="headers">Drop your email headers here</label><textarea id="headers" spellcheck="false" placeholder="From: …&#10;Received: …&#10;Authentication-Results: …&#10;&#10;Headers, please. Bread just gets stuck in the keyboard." required></textarea>
-<div class="input-actions"><label class="file-label" for="file">Or bring a text .eml / .txt file<input id="file" type="file" accept=".eml,.txt,text/plain,message/rfc822"></label><div><button id="clear" type="button" class="quiet">Sweep the coop</button><button type="submit" id="analyze" class="primary">Peck at headers <span aria-hidden="true">→</span></button></div></div></form>
-<p class="hint">256 KiB maximum. EML bodies are ignored; binary Outlook .msg files are unsupported. In Gmail, choose “Show original”; elsewhere, find the message source. This bird reads headers, not minds.</p><p id="error" role="alert" hidden></p>
-</section></div>
+<div class="section-heading"><h2 id="input-title">Message headers</h2><button id="load-sample" type="button">Load an example</button></div>
+<form id="analyze-form"><label for="headers">Paste headers, or open an .eml / .txt file below.</label><textarea id="headers" spellcheck="false" placeholder="From: …&#10;Received: …&#10;Authentication-Results: …" required></textarea>
+<div class="input-actions"><label class="file-label" for="file">Open a local file<input id="file" type="file" accept=".eml,.txt,text/plain,message/rfc822"></label><div><button id="clear" type="button" class="quiet">Clear</button><button type="submit" id="analyze" class="primary">Inspect headers</button></div></div></form>
+<p class="hint">Up to 256 KiB. Message bodies are ignored. Outlook .msg files aren’t supported.</p><p id="error" role="alert" hidden></p>
+</section>
+</div>
 <div id="results" aria-live="polite"></div>
-<section class="notes"><div><p class="eyebrow">A pigeon, not a judge</p><h2>A “pass” is not a halo.</h2><p>Header fields can be forged. A reported “pass” does not make a message safe, and a reported “fail” does not establish malicious intent. HomingPigeon does not perform DNS authentication or verify signatures.</p></div><div><p class="eyebrow">Keep your crumbs close</p><h2>Your mail stays in this browser.</h2><p>OSINT links open only after you confirm the indicator and destination. A provider may log or retain that indicator. Local and reserved indicators have no external lookup links. No surprise flights out of the coop.</p></div></section>
-</main><footer><span>Built by Matt Skrzypek. Supervised by a bird.</span><a href="https://github.com/mattskrzypek/HomingPigeon" rel="noopener noreferrer">Inspect the nest on GitHub ↗</a></footer></div>
-<dialog id="lookup-dialog" aria-labelledby="lookup-title"><p class="eyebrow">One breadcrumb is leaving the coop</p><h2 id="lookup-title">Open this external lookup?</h2><p id="lookup-description"></p><code id="lookup-value"></code><p id="lookup-note"></p><p>The selected indicator will be included in the destination URL. Full headers and message content will not be sent by this app.</p><div class="dialog-actions"><button id="lookup-cancel" type="button">Keep it here</button><a id="lookup-open" class="button primary" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open external lookup ↗</a></div></dialog>
+<section class="notes" aria-label="How to use the evidence">
+<div><h2>Read the evidence, not just “pass”.</h2><p>Headers can be forged. A reported “pass” doesn’t make an email safe; a “fail” doesn’t prove it’s malicious. This tool reads reported results. It doesn’t check DNS or verify signatures.</p></div>
+<div><h2>Nothing leaves until you open a lookup.</h2><p>Analysis stays in this browser. External links show the indicator and destination before opening. That provider may retain the indicator. Local and reserved indicators have no lookup links.</p></div>
+</section>
+</main>
+<footer><span>A tool by Matt Skrzypek</span><span>HomingPigeon · Headers, not hunches.</span></footer>
+</div>
+<dialog id="lookup-dialog" aria-labelledby="lookup-title"><h2 id="lookup-title">Open an external lookup?</h2><p id="lookup-description"></p><code id="lookup-value"></code><p id="lookup-note"></p><p>This indicator will be included in the destination URL. The app won’t send the full headers or message content.</p><div class="dialog-actions"><button id="lookup-cancel" type="button">Cancel</button><a id="lookup-open" class="button primary" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open lookup ↗</a></div></dialog>
 </body></html>
-
