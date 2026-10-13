@@ -2,6 +2,8 @@
 
 A browser-local email header workbench by Matt Skrzypek. Paste original headers or load a text `.eml` file to explore a delivery trace, reported authentication and IP/domain indicators. This is an investigation aid, not a malicious-email classifier.
 
+[Try the public demo](https://homingpigeon.sappytang12.chatgpt.site). Use the synthetic example to explore it without supplying real mail.
+
 ## Run and test
 
 Use Node.js 22 or later. No dependencies or installation are required.
