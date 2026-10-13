@@ -13,7 +13,7 @@
 <div class="header-links"><span class="local-label">Runs in your browser</span><a href="https://github.com/mattskrzypek/HomingPigeon" rel="noopener noreferrer">Source code ↗</a></div>
 </header>
 <main>
-<section class="intro"><p class="eyebrow">A little help with suspicious mail</p><h1>Email header inspector</h1><p>Paste the original headers to see where a message travelled and what the mail servers reported.</p></section>
+<section class="intro"><p class="eyebrow">Pigeon post · Suspicious deliveries desk</p><h1>Email header inspector</h1><p>Carrier pigeons used to deliver the mail. This one checks the route. Paste the original headers to see where your message travelled and what the mail servers reported.</p></section>
 <div class="desk-layout">
 <aside class="field-notes" aria-labelledby="notes-title">
 <svg class="pigeon" viewBox="0 0 320 290" role="img" aria-labelledby="pigeon-title"><title id="pigeon-title">A round pigeon carrying an envelope, ready to inspect suspicious mail</title>
@@ -27,16 +27,16 @@
 <path d="M137 58c8-19 26-25 39-20" fill="none"/><path d="M99 165c-6 37 19 62 51 52 17-5 24-29 3-43" fill="#879b90"/>
 <path d="m164 178 86-7 5 65-86 7z" fill="#f3f0df"/><path d="m164 178 46 28 40-35" fill="none"/><path d="m171 242 31-32m53 26-30-26" fill="none" stroke-width="3"/>
 </g><circle cx="218" cy="220" r="9" fill="#c3ee87"/></svg>
-<p class="bird-caption">For emails that make you squint.</p>
+<p class="bird-caption">Carrier pigeon.<br>Promoted to desk duty.</p>
 <h2 id="notes-title">Getting the headers</h2>
 <dl class="source-guide"><dt>Gmail</dt><dd>Open the message menu, then choose <strong>Show original</strong>.</dd><dt>Thunderbird</dt><dd>Use <strong>View → Message Source</strong>.</dd><dt>Other clients</dt><dd>Look for “message source” or “internet headers”.</dd></dl>
-<p class="margin-note">The pigeon accepts headers.<br>Please keep your sandwiches.</p>
+<p class="margin-note">Will work for crackers.<br>Please don’t put them in the file picker.</p>
 </aside>
 <section id="workbench" class="workbench" aria-labelledby="input-title">
-<div class="section-heading"><h2 id="input-title">Message headers</h2><button id="load-sample" type="button">Load an example</button></div>
+<div class="section-heading"><h2 id="input-title">Message headers</h2><button id="load-sample" type="button">Load a practice delivery</button></div>
 <form id="analyze-form"><label for="headers">Paste headers, or open an .eml / .txt file below.</label><textarea id="headers" spellcheck="false" placeholder="From: …&#10;Received: …&#10;Authentication-Results: …" required></textarea>
 <div class="input-actions"><label class="file-label" for="file">Open a local file<input id="file" type="file" accept=".eml,.txt,text/plain,message/rfc822"></label><div><button id="clear" type="button" class="quiet">Clear</button><button type="submit" id="analyze" class="primary">Inspect headers</button></div></div></form>
-<p class="hint">Up to 256 KiB. Message bodies are ignored. Outlook .msg files aren’t supported.</p><p id="error" role="alert" hidden></p>
+<p class="hint">Up to 256 KiB. Message bodies are ignored. Outlook .msg files aren’t supported. No stamp required.</p><p id="error" role="alert" hidden></p>
 </section>
 </div>
 <div id="results" aria-live="polite"></div>
@@ -45,7 +45,7 @@
 <div><h2>Nothing leaves until you open a lookup.</h2><p>Analysis stays in this browser. External links show the indicator and destination before opening. That provider may retain the indicator. Local and reserved indicators have no lookup links.</p></div>
 </section>
 </main>
-<footer><span>A tool by Matt Skrzypek</span><span>HomingPigeon · Headers, not hunches.</span></footer>
+<footer><span>A tool by Matt Skrzypek</span><span>HomingPigeon · No postage. Modest cracker budget.</span></footer>
 </div>
 <dialog id="lookup-dialog" aria-labelledby="lookup-title"><h2 id="lookup-title">Open an external lookup?</h2><p id="lookup-description"></p><code id="lookup-value"></code><p id="lookup-note"></p><p>This indicator will be included in the destination URL. The app won’t send the full headers or message content.</p><div class="dialog-actions"><button id="lookup-cancel" type="button">Cancel</button><a id="lookup-open" class="button primary" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open lookup ↗</a></div></dialog>
 </body></html>

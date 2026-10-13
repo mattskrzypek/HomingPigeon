@@ -29,12 +29,12 @@ function lookupButton(indicator,link) {
 /** @param {Analysis} report @returns {DocumentFragment} */
 function reportView(report) {
   const fragment=document.createDocumentFragment();
-  const summary=section('Message details','The header report');
+  const summary=section('Delivery manifest','Message details');
   const grid=element('div','','summary-grid');
   for(const [label,value] of [['Subject',report.subject],['From',report.from],['To',report.to],['Reply-To',report.replyTo],['Return-Path',report.returnPath],['Message-ID',report.messageId],['Date',report.date]]) { const dl=element('dl','',''); dl.append(element('dt',label,''),element('dd',value||'Not present','')); grid.append(dl); }
   summary.append(grid);
   for(const warning of report.warnings) summary.append(element('p',warning,'warning'));
-  const exportButton=element('button','Download report · JSON',''); exportButton.type='button';
+  const exportButton=element('button','Download delivery slip · JSON',''); exportButton.type='button';
   exportButton.id='download-analysis';
   exportButton.addEventListener('click',()=>{ const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const anchor=element('a','',''); anchor.href=url; anchor.download='homingpigeon-analysis.json'; anchor.click(); URL.revokeObjectURL(url); });
   summary.append(element('p','The downloaded report includes addresses and raw header evidence. Review it before sharing.','small'),exportButton); fragment.append(summary);
@@ -48,9 +48,9 @@ function reportView(report) {
   auth.append(label,select,sourceStatus);
   for(const claim of report.authentication) { const card=element('article','','auth-card'); card.append(element('h3',claim.source||'Unspecified source','')); for(const result of claim.results) { const line=element('div','','auth-result'); line.append(element('span',result.method.toUpperCase(),''),element('strong',result.result,''),element('code',result.detail,'')); card.append(line); } if(!claim.results.length) card.append(element('p','No supported authentication outcomes parsed. Review the raw field.','small')); card.append(rawDetails(claim.raw)); auth.append(card); }
   if(!report.authentication.length) auth.append(element('p','No Authentication-Results fields present.','small')); fragment.append(auth);
-  const route=section('Flight path','Received hops · Oldest first'); route.append(element('p','Received headers are shown in reverse order. Upstream entries can be forged and clocks can disagree. This trace does not establish the original sending host.','small'));
+  const route=section('Carrier route','Received hops · Oldest first'); route.append(element('p','Every relay is another stop on the pigeon’s round. Received headers are shown in reverse order. Upstream entries can be forged and clocks can disagree. This trace does not establish the original sending host.','small'));
   for(const hop of report.hops) { const card=element('article','','hop'); card.append(element('h3','Hop '+hop.number+': '+(hop.from||'Unknown sender')+' → '+(hop.by||'Unknown receiver'),''),element('p',hop.date||'No timestamp found',''),element('p','IP literals: '+(hop.ips.join(', ')||'None found'),'small'),rawDetails(hop.raw)); route.append(card); } fragment.append(route);
-  const osint=section('Worth a closer look','IP and domain investigation links'); osint.append(element('p','These indicators may belong to relays, recipients or other systems mentioned in the headers. They are not automatically malicious. Use only non-sensitive indicators; no lookup occurs until you open the confirmation link.','small'));
+  const osint=section('Follow the cracker crumbs','IP and domain investigation links'); osint.append(element('p','These indicators may belong to relays, recipients or other systems mentioned in the headers. They are not automatically malicious. Use only non-sensitive indicators; no lookup occurs until you open the confirmation link.','small'));
   for(const indicator of report.indicators) { const row=element('div','','indicator'); const identity=element('div','',''); identity.append(element('code',indicator.value,''),element('small',indicator.kind+(indicator.reason?' · '+indicator.reason:''),'')); const buttons=element('div','','lookup-buttons'); for(const link of investigationLinks(indicator)) buttons.append(lookupButton(indicator,link)); row.append(identity,buttons); osint.append(row); } if(!report.indicators.length) osint.append(element('p','No IP or domain indicators found.','small')); fragment.append(osint);
   return fragment;
 }
