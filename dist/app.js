@@ -11,7 +11,7 @@ function element(tag,text,className) { const el=document.createElement(tag); el.
 /** @param {string} title @param {string} number @returns {HTMLElement} */
 function section(title,number) { const el=element('section','','result-section'); el.append(element('p',number,'eyebrow'),element('h2',title,'')); return el; }
 /** @param {string} raw @returns {HTMLDetailsElement} */
-function rawDetails(raw) { const el=element('details','',''); el.append(element('summary','View raw evidence',''),element('pre',raw,'')); return el; }
+function rawDetails(raw) { const el=element('details','',''); el.append(element('summary','Ruffle the raw headers',''),element('pre',raw,'')); return el; }
 /** @param {Indicator} indicator @param {InvestigationLink} link @returns {HTMLButtonElement} */
 function lookupButton(indicator,link) {
   const button=element('button',link.provider,''); button.type='button';
@@ -29,16 +29,16 @@ function lookupButton(indicator,link) {
 /** @param {Analysis} report @returns {DocumentFragment} */
 function reportView(report) {
   const fragment=document.createDocumentFragment();
-  const summary=section('Message overview','02 / What was reported');
+  const summary=section('The pecking report','02 / Message overview');
   const grid=element('div','','summary-grid');
   for(const [label,value] of [['Subject',report.subject],['From',report.from],['To',report.to],['Reply-To',report.replyTo],['Return-Path',report.returnPath],['Message-ID',report.messageId],['Date',report.date]]) { const dl=element('dl','',''); dl.append(element('dt',label,''),element('dd',value||'Not present','')); grid.append(dl); }
   summary.append(grid);
   for(const warning of report.warnings) summary.append(element('p',warning,'warning'));
-  const exportButton=element('button','Download analysis JSON',''); exportButton.type='button';
+  const exportButton=element('button','Bag the breadcrumbs · Download JSON',''); exportButton.type='button';
   exportButton.id='download-analysis';
   exportButton.addEventListener('click',()=>{ const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const anchor=element('a','',''); anchor.href=url; anchor.download='homingpigeon-analysis.json'; anchor.click(); URL.revokeObjectURL(url); });
   summary.append(element('p','The downloaded report includes addresses and raw header evidence. Review it before sharing.','small'),exportButton); fragment.append(summary);
-  const auth=section('Authentication claims','03 / Identify the reporting source');
+  const auth=section('Who’s cooing?','03 / Authentication claims');
   auth.append(element('p','These are header-reported outcomes. HomingPigeon does not verify SPF, DKIM signatures or DMARC alignment. Select an authserv-id only if you recognize it as your receiving mail system. A forged field can reuse that name.','small'));
   const label=element('label','Receiving authserv-id you recognize',''); label.htmlFor='trusted-source';
   const select=element('select','',''); select.id='trusted-source'; select.append(new Option('None selected — treat all claims as untrusted',''));
@@ -48,9 +48,9 @@ function reportView(report) {
   auth.append(label,select,sourceStatus);
   for(const claim of report.authentication) { const card=element('article','','auth-card'); card.append(element('h3',claim.source||'Unspecified source','')); for(const result of claim.results) { const line=element('div','','auth-result'); line.append(element('span',result.method.toUpperCase(),''),element('strong',result.result,''),element('code',result.detail,'')); card.append(line); } if(!claim.results.length) card.append(element('p','No supported authentication outcomes parsed. Review the raw field.','small')); card.append(rawDetails(claim.raw)); auth.append(card); }
   if(!report.authentication.length) auth.append(element('p','No Authentication-Results fields present.','small')); fragment.append(auth);
-  const route=section('Delivery trace','04 / Oldest reported hop first'); route.append(element('p','Received headers are displayed in reverse order. Upstream entries can be forged, clocks can disagree, and this view does not establish the original sending host.','small'));
+  const route=section('The flight path','04 / Delivery trace · Oldest reported hop first'); route.append(element('p','Every bird has a story. This one has Received headers. They are displayed in reverse order; upstream entries can be forged, clocks can disagree, and this view does not establish the original sending host.','small'));
   for(const hop of report.hops) { const card=element('article','','hop'); card.append(element('h3','Hop '+hop.number+': '+(hop.from||'Unknown sender')+' → '+(hop.by||'Unknown receiver'),''),element('p',hop.date||'No timestamp found',''),element('p','IP literals: '+(hop.ips.join(', ')||'None found'),'small'),rawDetails(hop.raw)); route.append(card); } fragment.append(route);
-  const osint=section('Investigate indicators','05 / External links, on your terms'); osint.append(element('p','An extracted indicator is not necessarily the origin of the message or a malicious host. Choose only non-sensitive indicators. No lookup occurs until you open the confirmation link.','small'));
+  const osint=section('Follow the breadcrumbs','05 / OSINT investigation links'); osint.append(element('p','Interesting crumb? Take a closer look. An extracted indicator is not necessarily the origin of the message or a malicious host. Choose only non-sensitive indicators. No lookup occurs until you open the confirmation link.','small'));
   for(const indicator of report.indicators) { const row=element('div','','indicator'); const identity=element('div','',''); identity.append(element('code',indicator.value,''),element('small',indicator.kind+(indicator.reason?' · '+indicator.reason:''),'')); const buttons=element('div','','lookup-buttons'); for(const link of investigationLinks(indicator)) buttons.append(lookupButton(indicator,link)); row.append(identity,buttons); osint.append(row); } if(!report.indicators.length) osint.append(element('p','No IP or domain indicators found.','small')); fragment.append(osint);
   return fragment;
 }
