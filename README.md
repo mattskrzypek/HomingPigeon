@@ -35,6 +35,12 @@ OSINT links require a confirmation showing the destination and exact indicator. 
 
 The sample uses reserved example domains and documentation addresses. Never commit real mail, API keys, customer data or employer information. Input is capped at 256 KiB, and results are rendered as text rather than executable HTML.
 
+## Unraid edition
+
+Run `node scripts/build-unraid.mjs` to build `unraid/dist/` from the shared app. This edition adds a fat carrier pigeon behind a post-office desk and a 16-pixel favicon. It keeps the same browser-local analysis and explicit lookup prompts.
+
+`unraid/nginx.conf` serves the built assets on container port 8080, and `unraid/compose.yaml` records the container configuration. Deploy the contents of `unraid/` under `/mnt/cache/appdata/homingpigeon/`; the instance binds to LAN port 3004 behind the HTTPS reverse proxy. The container runs as UID 101 with read-only assets, no Linux capabilities and no access to mail or other application data. Use a fresh installation for the Compose example; an existing container created outside Compose must be reconciled before Compose can manage that name.
+
 ## Development approach
 
 Built with AI-assisted development using Codex. The implementation separates pure parsing from the UI and includes tests covering folded fields, conflicting authentication claims, duplicate senders, IPv6, input limits and external-link restrictions. Review changes and run the tests before deploying.

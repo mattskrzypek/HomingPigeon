@@ -1,0 +1,22 @@
+<svg class="pigeon" viewBox="0 0 320 300" role="img" aria-labelledby="pigeon-title" xmlns="http://www.w3.org/2000/svg">
+<title id="pigeon-title">A very fat carrier pigeon sitting behind a post-office desk with envelopes and crackers</title>
+<ellipse cx="160" cy="283" rx="133" ry="11" fill="#cdd1c4"/>
+<g stroke="#233b2c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M62 160V115c0-33 30-59 94-59s94 26 94 59v60" fill="#647d68"/>
+<ellipse cx="156" cy="172" rx="108" ry="78" fill="#bbc7bd"/>
+<path d="M120 116c-7-35-10-82 34-94 38-10 76 16 75 52l-4 58c-25 30-75 27-105-16z" fill="#a1b1a7"/>
+<path d="M120 104c26 22 66 25 106-2l-1 27c-31 31-78 20-105-13z" fill="#86ab70"/>
+<path d="m222 66 37 17-35 14" fill="#e0a559"/>
+<circle cx="200" cy="62" r="14" fill="#fff9e9"/><circle cx="204" cy="63" r="5" fill="#233b2c" stroke="none"/>
+<path d="M146 26c-2-14 5-19 13-18m-2 17c7-12 17-13 24-8" fill="none"/>
+<path d="M77 142c-26 25-10 67 36 52 16-5 25-27 15-42" fill="#879c8e"/>
+<path d="M225 149c24 23 18 52-12 57-17 3-25-10-22-27" fill="#879c8e"/>
+<path d="M29 220h265v54H29z" fill="#b38b59"/><path d="M20 205h284v18H20z" fill="#d6b889"/>
+<path d="M39 274v13m246-13v13" fill="none"/>
+<path d="m127 159 82 9-5 39-82-8z" fill="#fff9e9"/><path d="m127 159 37 31 45-22" fill="none" stroke-width="3"/>
+<path d="M39 184h60v22H39z" fill="#e0a559"/><path d="M43 182h52v7H43z" fill="#fff9e9"/>
+<path d="M237 189h23v15h-23z" fill="#e7c16f" stroke-width="3"/>
+<path d="M80 234h170v27H80z" fill="#fff9e9" stroke-width="3"/>
+</g><g fill="#233b2c"><circle cx="243" cy="194" r="1.5"/><circle cx="253" cy="194" r="1.5"/><circle cx="248" cy="200" r="1.5"/></g>
+<text x="165" y="252" text-anchor="middle" fill="#233b2c" font-family="monospace" font-size="13" font-weight="bold">PIGEON POST</text>
+</svg>
