@@ -29,7 +29,7 @@ These projects broaden the portfolio, but their source and current implementatio
 
 | Project | Scope | Portfolio status |
 | --- | --- | --- |
-| Crackers | FPV parts and build manager, including inventory, build assembly, cost tracking in CAD, bench notes, and compatibility advisories. | A browser-local prototype has been created. Source, current deployment, and advisories need review before a standalone public case study. |
+| [Crackers](https://github.com/mattskrzypek/Crackers) | TypeScript FPV parts and build manager with CAD cost tracking, stock allocation, compatibility advisories, and validated JSON backups. | v0.1 source published with five passing model tests and a successful production build. A separately hosted instance may use a different revision. |
 | FatPigeon Coop | A user-friendly portal for the homelab and its connected apps. | See the [homelab case study](homelab.md) for the existing environment, implementation evidence, and planned extensions. |
 | MTG app | A personal Magic: The Gathering web app with avatar customization. | An existing app; source and detailed feature inventory still need to be attached to the portfolio. |
 | FPV and maker projects | Drone builds, firmware configuration, radio themes/audio, and printable accessories. | Supporting hardware and customization work. Selected sanitized artifacts can become reproducible build notes. |
