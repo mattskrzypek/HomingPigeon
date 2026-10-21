@@ -4,6 +4,12 @@ A browser-local email header workbench by Matt Skrzypek. Paste original headers 
 
 [Try the public demo](https://homingpigeon.sappytang12.chatgpt.site). Use the synthetic example to explore it without supplying real mail.
 
+## Portfolio overview
+
+This project connects my SOC and incident response background with a focused investigation tool. The implementation emphasizes evidence handling, local processing, and deliberate external lookups. [See my project portfolio](docs/portfolio.md) for related Linux automation, homelab, and maker work, with implementation status noted for each project.
+
+**Start with:** [the parser](dist/analyzer.js), [regression tests](test/analyzer.test.mjs), and the trust and privacy boundaries below. Authentication results are reported claims, not independent verification.
+
 ## Run and test
 
 Use Node.js 22 or later. No dependencies or installation are required.
