@@ -49,7 +49,9 @@ Run `node scripts/build-unraid.mjs` to build `unraid/dist/` from the shared app.
 
 ## Development approach
 
-Built with AI-assisted development using Codex. The implementation separates pure parsing from the UI and includes tests covering folded fields, conflicting authentication claims, duplicate senders, IPv6, input limits and external-link restrictions. Review changes and run the tests before deploying.
+The implementation separates pure parsing from the UI and includes tests covering folded fields, conflicting authentication claims, duplicate senders, IPv6, input limits and external-link restrictions. Review changes and run the tests before deploying.
+
+Development tooling includes Codex.
 
 ## License
 
