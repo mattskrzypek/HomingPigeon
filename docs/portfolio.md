@@ -15,7 +15,7 @@ I have approximately seven years of cybersecurity experience, primarily in secur
 
 [**FatPigeon homelab: self-hosted infrastructure and application operations**](homelab.md)
 
-My Unraid/Docker environment brings together media services, custom applications, and Tailscale connectivity between my Linux workstation and server. The case study covers the service inventory, intended access model, Linux workstation automation, and source-backed container controls in HomingPigeon's server edition. It also identifies the status of identity, deployment automation, local AI, and recovery work.
+A practical self-hosting project connecting application deployment, Linux administration, remote connectivity, and security design. The case study highlights transferable skills and implementation examples already available in the public repositories.
 
 ### Engineering decisions worth discussing
 
@@ -35,8 +35,6 @@ These projects broaden the portfolio, but their source and current implementatio
 | FPV and maker projects | Drone builds, firmware configuration, radio themes/audio, and printable accessories. | Supporting hardware and customization work. Selected sanitized artifacts can become reproducible build notes. |
 | FatPigeon deployment tooling and local AI | Deployment automation and experiments with Hermes/Ollama. | Planned or exploratory work; not presented here as completed automation or production AI security experience. |
 
-## Development approach
+## Technical focus
 
-I use AI-assisted development tools, including ChatGPT/Codex, in my personal projects. HomingPigeon's README explicitly documents Codex assistance. Repository code, tests, and stated limitations are the basis for assessing each implementation; these projects are not claims of wholly unaided authorship or enterprise deployment.
-
-My professional background is in SOC and incident response. AI security is a development direction, and these projects provide practical material for discussing data handling, trust boundaries, automation, and verification.
+My professional background is in SOC and incident response. These projects connect that experience with practical investigation tooling, Linux automation, application deployment, and security design. The linked source, tests, and technical documentation provide concrete starting points for discussion.
